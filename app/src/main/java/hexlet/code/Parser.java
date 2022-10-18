@@ -10,11 +10,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Parser {
-    public static Map<String, Object> parseJSON(String filepath) throws Exception {
-        Path path = Paths.get(filepath).toAbsolutePath();
-        String content = Files.readString(path);
+    public static Map<String, Object> parseJSON(String json) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(content, Map.class);
+        Map<String, Object> map = new HashMap<>();
+        map = mapper.readValue(json,
+                map.getClass());
+        return map;
     }
 
     public static Map<String, Object> parseYAML(String yaml) throws Exception {
@@ -36,4 +37,3 @@ public class Parser {
         return map;
     }
 }
-
