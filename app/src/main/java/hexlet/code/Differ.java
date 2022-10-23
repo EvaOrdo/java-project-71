@@ -48,4 +48,8 @@ public class Differ {
         System.out.println(Formatter.format(diff, formatName));
         return Formatter.format(diff, formatName);
     }
+
+    public static String generate(String filepath1, String filepath2) throws Exception {
+        return generate(filepath1, filepath2, "stylish");
+    }
 }
