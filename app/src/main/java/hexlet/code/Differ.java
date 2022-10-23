@@ -7,9 +7,13 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 public class Differ {
-    public static String generate(Map<String, Object> map1, Map<String, Object> map2, String formatName)
+    public static String generate(String filepath1, String filepath2, String formatName)
             throws Exception {
+        Map<String, Object> map1 = Parser.parseString(filepath1);
+        Map<String, Object> map2 = Parser.parseString(filepath2);
+
         Set<String> commonKeys = new TreeSet<>();
+
         commonKeys.addAll(map1.keySet());
         commonKeys.addAll(map2.keySet());
 

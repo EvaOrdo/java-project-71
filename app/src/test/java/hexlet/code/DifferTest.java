@@ -1,10 +1,6 @@
 package hexlet.code;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -13,11 +9,6 @@ public class DifferTest {
     private static String pathToJson2 = "src/test/resources/file2.json";
     private static String pathToYaml1 = "src/test/resources/file1.yml";
     private static String pathToYaml2 = "src/test/resources/file2.yml";
-
-    private static Map<String, Object> mapFromJson1 = new HashMap<>();
-    private static Map<String, Object> mapFromJson2 = new HashMap<>();
-    private static Map<String, Object> mapFromYaml1 = new HashMap<>();
-    private static Map<String, Object> mapFromYaml2 = new HashMap<>();
 
     private final String expectedStylish = """
 {
@@ -76,29 +67,22 @@ public class DifferTest {
             + "{\"key\":\"setting2\",\"status\":\"changed\",\"value1\":200,\"value2\":300}"
             + "{\"key\":\"setting3\",\"status\":\"changed\",\"value1\":true,\"value2\":\"none\"}";
 
-    @BeforeAll
-    public static void beforeAll() throws Exception {
-        mapFromJson1 = Parser.parseString(pathToJson1);
-        mapFromJson2 = Parser.parseString(pathToJson2);
-        mapFromYaml1 = Parser.parseString(pathToYaml1);
-        mapFromYaml2 = Parser.parseString(pathToYaml2);
-    }
 
     @Test
     public void generateStylishTest() throws Exception {
-        assertEquals(expectedStylish, Differ.generate(mapFromJson1, mapFromJson2, "stylish"));
-        assertEquals(expectedStylish, Differ.generate(mapFromYaml1, mapFromYaml2, "stylish"));
+        assertEquals(expectedStylish, Differ.generate(pathToJson1, pathToJson2, "stylish"));
+        assertEquals(expectedStylish, Differ.generate(pathToYaml1, pathToYaml2, "stylish"));
     }
 
     @Test
     public void generatePlainTest() throws Exception {
-        assertEquals(expectedPlain, Differ.generate(mapFromJson1, mapFromJson2, "plain"));
-        assertEquals(expectedPlain, Differ.generate(mapFromYaml1, mapFromYaml2, "plain"));
+        assertEquals(expectedPlain, Differ.generate(pathToJson1, pathToJson2, "plain"));
+        assertEquals(expectedPlain, Differ.generate(pathToYaml1, pathToYaml2, "plain"));
     }
 
     @Test
     public void generateYamlJsonTest() throws Exception {
-        assertEquals(expectedJson, Differ.generate(mapFromJson1, mapFromJson2, "json"));
-        assertEquals(expectedJson, Differ.generate(mapFromYaml1, mapFromYaml2, "json"));
+        assertEquals(expectedJson, Differ.generate(pathToJson1, pathToJson2, "json"));
+        assertEquals(expectedJson, Differ.generate(pathToYaml1, pathToYaml2, "json"));
     }
 }
