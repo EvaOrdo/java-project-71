@@ -23,7 +23,7 @@ jobs:
       - name: Publish code coverage
         uses: paambaati/codeclimate-action@v3.0.0
         env:
-          CC_TEST_REPORTER_ID: ${{secrets.C_C_ID}}
+          CC_TEST_REPORTER_ID: a0121d6239e9b6914a3077c85c78bbd2192bb23a21ca4d7ff8edbdfdb17c80b7
         with:
           coverageCommand: make report
           coverageLocations: ${{github.workspace}}/build/reports/jacoco/test/jacocoTestReport.xml:jacoco
