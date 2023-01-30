@@ -1,10 +1,6 @@
 package hexlet.code;
 
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.TreeSet;
+import java.util.*;
 
 public class Differ {
     public static String generate(String filepath1, String filepath2, String formatName)
