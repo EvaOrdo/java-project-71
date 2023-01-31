@@ -11,12 +11,7 @@ public class Stylish {
             String key = (String) map.get("key");
             Object value1 = map.get("value1");
             Object value2 = map.get("value2");
-            /*if (value1 instanceof Array) {
-                value1.toString();
-            }
-            if (value2 instanceof Array) {
-                value2.toString();
-            }*/
+
             switch (status) {
                 case "added":
                     result += "  + " + key + ": " + value2 + "\n";
