@@ -1,5 +1,6 @@
 package hexlet.code;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -19,9 +20,16 @@ public class DifferTest {
     private static String pathToPlain = "src/test/resources/plain.txt";
 
     private static String pathToJsonFormat = "src/test/resources/json.txt";
-    private final String expectedStylish = Files.readString(Paths.get(pathToStylish));
-    private final String expectedPlain = Files.readString(Paths.get(pathToPlain));
-    private final String expectedJson = Files.readString(Paths.get(pathToJsonFormat));
+    private static String expectedStylish;
+    private static String expectedPlain;
+    private static String expectedJson;
+
+    @BeforeAll
+    public static void beforeAll() throws IOException {
+        expectedStylish = Files.readString(Paths.get(pathToStylish));
+        expectedPlain = Files.readString(Paths.get(pathToPlain));
+        expectedJson = Files.readString(Paths.get(pathToJsonFormat));
+    }
 
     public DifferTest() throws IOException {
     }
@@ -30,6 +38,7 @@ public class DifferTest {
     public void generateStylishTest() throws Exception {
         assertEquals(expectedStylish, Differ.generate(pathToJson1, pathToJson2, "stylish"));
         assertEquals(expectedStylish, Differ.generate(pathToYaml1, pathToYaml2, "stylish"));
+        assertEquals(expectedStylish, Differ.generate(pathToYaml1, pathToYaml2));
     }
 
     @Test
