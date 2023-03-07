@@ -6,7 +6,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeSet;
 
 import static hexlet.code.DiffBuilder.buildDifference;
 
@@ -28,12 +27,7 @@ public class Differ {
         Map<String, Object> map1 = Parser.parseString(getContent(filepath1), getExtension(filepath1));
         Map<String, Object> map2 = Parser.parseString(getContent(filepath2), getExtension(filepath2));
 
-        Set<String> commonKeys = new TreeSet<>();
-
-        commonKeys.addAll(map1.keySet());
-        commonKeys.addAll(map2.keySet());
-
-        Set<Map> diff = buildDifference(commonKeys, map1, map2);
+        Set<Map> diff = buildDifference(map1, map2);
 
         return Formatter.format(diff, formatName);
     }
