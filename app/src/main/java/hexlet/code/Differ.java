@@ -27,6 +27,7 @@ public class Differ {
         Map<String, Object> map1 = Parser.parseString(getContent(filepath1), getExtension(filepath1));
         Map<String, Object> map2 = Parser.parseString(getContent(filepath2), getExtension(filepath2));
 
+
         Set<Map> diff = buildDifference(map1, map2);
 
         return Formatter.format(diff, formatName);

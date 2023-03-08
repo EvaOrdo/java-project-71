@@ -10,20 +10,9 @@ public class Plain {
         for (Map map : diff) {
             String status = (String) map.get("status");
             String key = (String) map.get("key");
-            Object value1 = map.get("value1");
-            Object value2 = map.get("value2");
+            Object value1 = valueProcessing(map.get("value1"));
+            Object value2 = valueProcessing(map.get("value2"));
 
-            if (value1 instanceof List<?> || value1 instanceof Map<?, ?>) {
-                value1 = "[complex value]";
-            } else if (value1 instanceof String) {
-                value1 = "'%s'".formatted(value1);
-            }
-
-            if (value2 instanceof List<?> || value2 instanceof Map<?, ?>) {
-                value2 = "[complex value]";
-            } else if (value2 instanceof String) {
-                value2 = "'%s'".formatted(value2);
-            }
             switch (status) {
                 case "added" -> result
                         .append("Property '%s' was added with value: %s\n".formatted(key, value2));
@@ -36,5 +25,14 @@ public class Plain {
             }
         }
         return result.toString().trim();
+    }
+
+    public static Object valueProcessing(Object val) {
+        if (val instanceof List<?> || val instanceof Map<?, ?>) {
+            return "[complex value]";
+        } else if (val instanceof String) {
+            return "'%s'".formatted(val);
+        }
+        return val;
     }
 }
