@@ -2,6 +2,7 @@ package hexlet.code;
 
 import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
@@ -37,28 +38,15 @@ public class DiffBuilder {
     }
 
     public static void compareValues(Map<String, Object> map, String key, Object value1, Object value2) {
-        if (value1 != null) {
-            if (value1.equals(value2)) {
-                map.put("status", "unchanged");
-                map.put("key", key);
-                map.put("value1", value1);
-            } else {
-                map.put("status", "changed");
-                map.put("key", key);
-                map.put("value1", value1);
-                map.put("value2", value2);
-            }
-        } else if (value1 == null) {
-            if (value2 != null) {
-                map.put("status", "changed");
-                map.put("key", key);
-                map.put("value1", null);
-                map.put("value2", value2);
-            } else {
-                map.put("status", "unchanged");
-                map.put("key", key);
-                map.put("value1", null);
-            }
+        if (Objects.equals(value1, value2)) {
+            map.put("status", "unchanged");
+            map.put("key", key);
+            map.put("value1", value1);
+        } else {
+            map.put("status", "changed");
+            map.put("key", key);
+            map.put("value1", value1);
+            map.put("value2", value2);
         }
     }
 }
